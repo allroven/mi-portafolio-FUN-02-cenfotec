@@ -7,7 +7,7 @@ export function Header({
   activeWeek: number;
   setActiveWeek: (week: number) => void;
 }) {
-  const weeks = [5, 6, 7, 8];
+  const weeks = [5, 6, 7, 8, 9, 10, 11, 12];
 
   return (
     <header className="sticky top-0 z-50 glass-nav shadow-sm mb-12 transition-all duration-300">

@@ -27,20 +27,20 @@ export default function Home() {
   const [activeWeek, setActiveWeek] = useState(5);
 
   const expressions = [
-    { 
+    {
       expr: "4a²b - 2b³",
       sub: "a = -1, b = 2",
-      res: "-8", 
+      res: "-8",
       steps: [
         "Sustituyendo: 4(-1)²(2) - 2(2)³",
         "Potencias: 4(1)(2) - 2(8)",
         "Multiplicando: 8 - 16",
       ]
     },
-    { 
+    {
       expr: "R(x) = (x³ + 5) / (x - 2)",
       sub: "x = 4",
-      res: "34.5", 
+      res: "34.5",
       steps: [
         "Sustituyendo: (4³ + 5) / (4 - 2)",
         "Potencias: (64 + 5) / 2",
@@ -87,54 +87,87 @@ export default function Home() {
   ];
 
   const exercisesW8 = [
-    { 
-      expr: <><Fraction num="3" den="2x+4" /> + <Fraction num="2x" den="x²-4" /></>, 
-      sub: "Suma de Fracciones", 
-      res: <Fraction num="7x - 6" den="2(x²-4)" />, 
+    {
+      expr: <><Fraction num="3" den="2x+4" /> + <Fraction num="2x" den="x²-4" /></>,
+      sub: "Suma de Fracciones",
+      res: <Fraction num="7x - 6" den="2(x²-4)" />,
       steps: [
-        "Factorizar denominadores: 2x+4 = 2(x+2), x²-4 = (x+2)(x-2)", 
-        "MCM = 2(x+2)(x-2)", 
-        "Num1: 3(x-2) = 3x - 6", 
-        "Num2: 2x(2) = 4x", 
-        <>Sumar: <Fraction num="3x - 6 + 4x" den="MCM" /></>, 
+        "Factorizar denominadores: 2x+4 = 2(x+2), x²-4 = (x+2)(x-2)",
+        "MCM = 2(x+2)(x-2)",
+        "Num1: 3(x-2) = 3x - 6",
+        "Num2: 2x(2) = 4x",
+        <>Sumar: <Fraction num="3x - 6 + 4x" den="MCM" /></>,
         <>Resultado: <Fraction num="7x - 6" den="2(x²-4)" /></>
-      ] 
+      ]
     },
-    { 
-      expr: <><Fraction num="x²-1" den="x³" /> - <Fraction num="2x" den="x²+7" /></>, 
-      sub: "Resta de Fracciones", 
-      res: <Fraction num="-x⁴ + 6x² - 7" den="x³(x²+7)" />, 
+    {
+      expr: <><Fraction num="x²-1" den="x³" /> - <Fraction num="2x" den="x²+7" /></>,
+      sub: "Resta de Fracciones",
+      res: <Fraction num="-x⁴ + 6x² - 7" den="x³(x²+7)" />,
       steps: [
-        "MCM = x³(x²+7)", 
-        "Num1: (x²-1)(x²+7) = x⁴+6x²-7", 
-        "Num2: -2x(x³) = -2x⁴", 
-        "Restar: x⁴+6x²-7 - 2x⁴", 
+        "MCM = x³(x²+7)",
+        "Num1: (x²-1)(x²+7) = x⁴+6x²-7",
+        "Num2: -2x(x³) = -2x⁴",
+        "Restar: x⁴+6x²-7 - 2x⁴",
         <>Resultado: <Fraction num="-x⁴ + 6x² - 7" den="x³(x²+7)" /></>
-      ] 
+      ]
     },
-    { 
-      expr: <><Fraction num="3x-1" den="x²-9" /> &nbsp;·&nbsp; <Fraction num="x+3" den="2x" /></>, 
-      sub: "Multiplicación de Fracciones", 
-      res: <Fraction num="3x-1" den="2x(x-3)" />, 
+    {
+      expr: <><Fraction num="3x-1" den="x²-9" /> &nbsp;·&nbsp; <Fraction num="x+3" den="2x" /></>,
+      sub: "Multiplicación de Fracciones",
+      res: <Fraction num="3x-1" den="2x(x-3)" />,
       steps: [
-        <>Factorizar y Expresar: <Fraction num="(3x-1)(x+3)" den="(x-3)(x+3)(2x)" /></>, 
-        "Cancelar factor común (x+3)", 
-        "Numerador resultante: (3x-1)", 
+        <>Factorizar y Expresar: <Fraction num="(3x-1)(x+3)" den="(x-3)(x+3)(2x)" /></>,
+        "Cancelar factor común (x+3)",
+        "Numerador resultante: (3x-1)",
         "Denominador resultante: 2x(x-3)"
-      ] 
+      ]
     },
-    { 
-      expr: <><Fraction num="x-4" den="x²-4" /> &nbsp;÷&nbsp; <Fraction num="x²-3x-4" den="x²+5x+6" /></>, 
-      sub: "División de Fracciones", 
-      res: <Fraction num="x+3" den="(x-2)(x+1)" />, 
+    {
+      expr: <><Fraction num="x-4" den="x²-4" /> &nbsp;÷&nbsp; <Fraction num="x²-3x-4" den="x²+5x+6" /></>,
+      sub: "División de Fracciones",
+      res: <Fraction num="x+3" den="(x-2)(x+1)" />,
       steps: [
-        <>Invertir divisor a multiplicación: &nbsp;·&nbsp; <Fraction num="x²+5x+6" den="x²-3x-4" /></>, 
-        <>Factorizar el primer término: <Fraction num="x-4" den="(x-2)(x+2)" /></>, 
-        <>Factorizar el segundo término: <Fraction num="(x+2)(x+3)" den="(x-4)(x+1)" /></>, 
-        "Cancelar los factores comunes: (x-4) y (x+2)", 
+        <>Invertir divisor a multiplicación: &nbsp;·&nbsp; <Fraction num="x²+5x+6" den="x²-3x-4" /></>,
+        <>Factorizar el primer término: <Fraction num="x-4" den="(x-2)(x+2)" /></>,
+        <>Factorizar el segundo término: <Fraction num="(x+2)(x+3)" den="(x-4)(x+1)" /></>,
+        "Cancelar los factores comunes: (x-4) y (x+2)",
         <>Resultado final: <Fraction num="x+3" den="(x-2)(x+1)" /></>
-      ] 
+      ]
     },
+  ];
+
+  const exercisesW10Linear = [
+    { expr: "3x - 7 = 2x + 5", sub: "Ec. Lineal", res: "x = 12", steps: ["Transponer: 3x - 2x = 5 + 7", "Simplificar: x = 12", "Validado ✓"] },
+    { expr: "5(x+2) - 3 = 4(x-1) + 6", sub: "Ec. Lineal con Distribución", res: "x = -5", steps: ["Distribuir: 5x + 10 - 3 = 4x - 4 + 6", "Simplificar: 5x + 7 = 4x + 2", "Transponer: 5x - 4x = 2 - 7", "x = -5 ✓  (img original indicaba x=-9, corregido)"] },
+    { expr: <><Fraction num="2x" den="x - 3" /> = 4</>, sub: "Ec. Fraccionaria (x ≠ 3)", res: "x = 6", steps: ["Multiplicar: 2x = 4(x - 3)", "Expandir: 2x = 4x - 12", "Transponer: 12 = 2x", "x = 6 ✓"] },
+  ];
+
+  const exercisesW10Quadratic = [
+    { expr: "x² - 5x + 6 = 0", sub: "Cuadrática por Factorización", res: "S = {2, 3}", steps: ["Buscar factores de 6 que sumen -5: (-2) y (-3)", "(x - 2)(x - 3) = 0", "x = 2 ó x = 3", "S = {2, 3} ✓"] },
+    { expr: "2x² + 3x - 2 = 0", sub: "Fact. por Agrupación", res: <><Fraction num="1" den="2" /> ó x = -2</>, steps: ["Descomponer 3x = 4x - x", "2x(x+2) - 1(x+2) = 0", "(2x-1)(x+2) = 0", "x = 1/2 ó x = -2 ✓"] },
+    { expr: "x² - 6x + 9 = 0", sub: "Trinomio Cuadrado Perfecto", res: "S = {3}", steps: ["Reconocer patrón (a-b)²", "(x - 3)² = 0", "x = 3", "Raíz doble ✓"] },
+  ];
+
+  const exercisesW10AbsVal = [
+    { expr: "|x - 5| = 8", sub: "Valor Absoluto", res: "S = {-3, 13}", steps: ["Caso 1: x - 5 = 8 → x = 13", "Caso 2: x - 5 = -8 → x = -3", "S = {-3, 13} ✓"] },
+    { expr: "|2x + 3| = 11", sub: "Valor Absoluto", res: "S = {-7, 4}", steps: ["Caso 1: 2x + 3 = 11 → 2x = 8 → x = 4", "Caso 2: 2x + 3 = -11 → 2x = -14 → x = -7", "S = {-7, 4} ✓"] },
+  ];
+
+  const exercisesW10Radical = [
+    { expr: "√(2x + 3) = 5", sub: "Ec. Radical", res: "x = 11", steps: ["Elevar al cuadrado: 2x + 3 = 25", "2x = 22", "x = 11", "Verificar: √(22+3) = √25 = 5 ✓"] },
+    { expr: "√(x + 1) = x - 1", sub: "Ec. Radical (verificar extrañas)", res: "x = 3", steps: ["Elevar al cuadrado: x+1 = (x-1)²", "x+1 = x²-2x+1", "0 = x²-3x = x(x-3)", "x=0 → √1 = -1 (Falso ✗)", "x=3 → √4 = 2 (Verdadero ✓)", "Solución: x = 3"] },
+  ];
+
+  const exercisesW10Ineq = [
+    { expr: "3x - 7 < 2x + 5", sub: "Inecuación Lineal", res: "]-∞, 12[", steps: ["Transponer: 3x - 2x < 5 + 7", "x < 12", "S = ]-∞, 12[ ✓"] },
+    { expr: "x² - 5x + 6 > 0", sub: "Inecuación Cuadrática", res: "]-∞, 2[ ∪ ]3, ∞[", steps: ["Factorizar: (x-2)(x-3) > 0", "Valores críticos: x=2, x=3", "Analizar signos por intervalos", "Producto > 0 fuera del intervalo [2,3]", "S = ]-∞, 2[ ∪ ]3, ∞[ ✓"] },
+    { expr: "x² - 4 ≤ 0", sub: "Inecuación Cuadrática", res: "[-2, 2]", steps: ["Factorizar (dif. cuadrados): (x-2)(x+2) ≤ 0", "Valores críticos: x = ±2", "Producto ≤ 0 entre -2 y 2 (inclusive)", "S = [-2, 2] ✓"] },
+  ];
+
+  const exercisesW10AbsIneq = [
+    { expr: "|x - 3| < 5", sub: "Inecuación de Valor Absoluto", res: "]-2, 8[", steps: ["-5 < x - 3 < 5", "Sumar 3: -2 < x < 8", "S = ]-2, 8[ ✓"] },
+    { expr: "|2x + 1| ≥ 7", sub: "Inecuación de Valor Absoluto", res: "]-∞, -4] ∪ [3, ∞[", steps: ["Caso 1: 2x+1 ≥ 7 → x ≥ 3", "Caso 2: 2x+1 ≤ -7 → x ≤ -4", "S = ]-∞,-4] ∪ [3,∞[ ✓"] },
   ];
 
   return (
@@ -167,19 +200,19 @@ export default function Home() {
                     1. Interacción con DiálogoX
                   </h3>
                   <div className="grid md:grid-cols-2 gap-8">
-                    <Carousel 
-                      title="Q1: Lógica de Variables" 
+                    <Carousel
+                      title="Q1: Lógica de Variables"
                       slides={[
                         <img key="1" src="/img/s5-q1-1.png" alt="Captura Q1-1" className="w-full h-full object-contain bg-black/50 rounded-2xl p-2 border border-slate-200/10" />,
                         <img key="2" src="/img/s5-q1-2.png" alt="Captura Q1-2" className="w-full h-full object-contain bg-black/50 rounded-2xl p-2 border border-slate-200/10" />
-                      ]} 
+                      ]}
                     />
-                    <Carousel 
-                      title="Q2: Contexto (3a + 4ab)" 
+                    <Carousel
+                      title="Q2: Contexto (3a + 4ab)"
                       slides={[
                         <img key="1" src="/img/s5-q2-1.png" alt="Captura Q2-1" className="w-full h-full object-contain bg-black/50 rounded-2xl p-2 border border-slate-200/10" />,
                         <img key="2" src="/img/s5-q2-2.png" alt="Captura Q2-2" className="w-full h-full object-contain bg-black/50 rounded-2xl p-2 border border-slate-200/10" />
-                      ]} 
+                      ]}
                     />
                   </div>
                 </section>
@@ -189,11 +222,11 @@ export default function Home() {
                   <div className="absolute top-0 right-0 p-8 opacity-5">
                     <BookOpen className="w-64 h-64" />
                   </div>
-                  
+
                   <h3 className="font-bold text-slate-800 dark:text-slate-100 border-l-4 border-indigo-500 pl-4 mb-10 uppercase text-sm tracking-widest relative z-10 flex items-center">
                     2. Ejercicios Prácticos
                   </h3>
-                  
+
                   <div className="grid md:grid-cols-2 gap-6 relative z-10">
                     {expressions.map((item, idx) => (
                       <MathCard key={idx} expression={item.expr} sub={item.sub} result={item.res} steps={item.steps} />
@@ -248,14 +281,14 @@ export default function Home() {
                       "¿De qué manera didáctica puedo aprender a identificar las fórmulas notables?"
                     </p>
                     <div className="w-full">
-                      <Carousel 
+                      <Carousel
                         title="DiálogoX: Fórmulas Notables"
                         slides={[1, 2, 3, 4, 5].map(num => (
-                          <img 
-                            key={num} 
-                            src={`/img/s6-q1-${num}.png`} 
-                            alt={`Captura ${num}`} 
-                            className="w-full h-full object-contain bg-black/50 rounded-2xl p-2 border border-slate-200/10" 
+                          <img
+                            key={num}
+                            src={`/img/s6-q1-${num}.png`}
+                            alt={`Captura ${num}`}
+                            className="w-full h-full object-contain bg-black/50 rounded-2xl p-2 border border-slate-200/10"
                           />
                         ))}
                       />
@@ -274,7 +307,7 @@ export default function Home() {
                   <p className="text-slate-600 dark:text-slate-400 mb-6 text-sm relative z-10">
                     Resolución paso a paso de los ejercicios de clase, verificando correcciones y valores numéricos.
                   </p>
-                  
+
                   <h4 className="font-bold text-slate-700 dark:text-slate-200 uppercase tracking-widest text-xs mb-4 mt-8">1. Valor Numérico de Expresiones</h4>
                   <div className="grid md:grid-cols-2 gap-6 relative z-10 mb-8">
                     {exercisesW6P1.map((item, idx) => (
@@ -315,14 +348,14 @@ export default function Home() {
                         <div className="border-t border-indigo-500/20 pt-8 mt-4">
                           <h4 className="text-sm font-bold mb-4 text-emerald-400 uppercase tracking-widest">Evidencia DiálogoX (Cubriendo Limitaciones)</h4>
                           <div className="rounded-xl border border-emerald-500/20 overflow-hidden hover:border-emerald-500/50 transition-colors">
-                            <Carousel 
+                            <Carousel
                               title="Evidencia DiálogoX"
                               slides={[1, 2].map(num => (
-                                <img 
-                                  key={num} 
-                                  src={`/img/evidencia-gema-${num}.png`} 
-                                  alt={`Evidencia ${num}`} 
-                                  className="w-full h-full object-contain bg-black/50 rounded-2xl p-2 border border-slate-200/10" 
+                                <img
+                                  key={num}
+                                  src={`/img/evidencia-gema-${num}.png`}
+                                  alt={`Evidencia ${num}`}
+                                  className="w-full h-full object-contain bg-black/50 rounded-2xl p-2 border border-slate-200/10"
                                 />
                               ))}
                             />
@@ -363,14 +396,14 @@ export default function Home() {
                       "¿Para qué procedimientos o conceptos de otros cursos (como cálculo diferencial e integral, álgebra lineal, métodos numéricos, física) se requiere aprender factorización de polinomios?"
                     </p>
                     <div className="w-full">
-                      <Carousel 
+                      <Carousel
                         title="DiálogoX: Factorización en el Futuro"
                         slides={[1, 2].map(num => (
-                          <img 
-                            key={num} 
-                            src={`/img/s7-q1-${num}.png`} 
-                            alt={`Captura ${num}`} 
-                            className="w-full h-full object-contain bg-black/50 rounded-2xl p-2 border border-slate-200/10" 
+                          <img
+                            key={num}
+                            src={`/img/s7-q1-${num}.png`}
+                            alt={`Captura ${num}`}
+                            className="w-full h-full object-contain bg-black/50 rounded-2xl p-2 border border-slate-200/10"
                             onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement!.innerHTML = `<div class="p-8 text-center text-slate-400 flex flex-col items-center"><svg class="w-8 h-8 mb-2 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg><p class="text-xs font-bold uppercase tracking-widest">Sube tus fotos como s7-q1-${num}.png en /img/</p></div>`; }}
                           />
                         ))}
@@ -495,14 +528,14 @@ export default function Home() {
                       "Ayúdame a crear un diagrama o esquema del paso a paso para simplificar expresiones algebraicas y que no olvide ningún detalle al realizar este tipo de ejercicios matemáticos."
                     </p>
                     <div className="w-full">
-                      <Carousel 
+                      <Carousel
                         title="DiálogoX: Esquema paso a paso"
                         slides={[1].map(num => (
-                          <img 
-                            key={num} 
-                            src={`/img/s8-q1-${num}.jpg`} 
-                            alt={`Captura ${num}`} 
-                            className="w-full h-full object-contain bg-slate-900/50 rounded-2xl p-2 border border-slate-200/10" 
+                          <img
+                            key={num}
+                            src={`/img/s8-q1-${num}.jpg`}
+                            alt={`Captura ${num}`}
+                            className="w-full h-full object-contain bg-slate-900/50 rounded-2xl p-2 border border-slate-200/10"
                             onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement!.innerHTML = `<div class="p-8 text-center text-slate-400 flex flex-col items-center"><svg class="w-8 h-8 mb-2 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg><p class="text-xs font-bold uppercase tracking-widest">Sube tus fotos como s8-q1-${num}.jpg en /img/</p></div>`; }}
                           />
                         ))}
@@ -544,6 +577,388 @@ export default function Home() {
                             <p className="text-fuchsia-100 font-medium italic mb-2 text-sm leading-relaxed whitespace-pre-line border-l-4 border-fuchsia-400 pl-4 py-1">
                               "Sí, cambió un poco. Recordé (después de bastante tiempo de no usar álgebra) que no es tan difícil y que lo importante es asimilar las reglas y seguir el proceso, que en la mayoría de los casos es un proceso mecánico."
                             </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </motion.div>
+          ) : activeWeek === 9 ? (
+            <motion.div key="week-9" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }} className="space-y-16">
+              <header className="text-center relative">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-teal-500/20 rounded-full blur-3xl" />
+                <h2 className="text-4xl font-black text-slate-800 dark:text-white mb-4 relative">
+                  Módulo 5: <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-emerald-500">Semana 9</span>
+                </h2>
+                <div className="h-1.5 w-24 bg-gradient-to-r from-teal-500 to-emerald-500 mx-auto rounded-full"></div>
+              </header>
+
+              <div className="space-y-16">
+                <section>
+                  <h3 className="font-bold text-slate-800 dark:text-slate-100 border-l-4 border-teal-500 pl-4 mb-8 uppercase text-sm tracking-widest flex items-center">
+                    1. Interacción con DiálogoX
+                  </h3>
+                  <div className="glass-panel p-8 rounded-2xl relative border-t-4 border-t-teal-400 dark:border-t-teal-600 mb-8">
+                    <h4 className="font-bold text-lg mb-2 text-teal-500">Pregunta 1 al AI Studio:</h4>
+                    <p className="text-slate-700 dark:text-slate-300 italic text-lg mb-6 border-l-4 border-teal-300 dark:border-teal-700 pl-4 py-2">
+                       "¿Cuál es la diferencia entre una ecuación y un polinomio?"
+                    </p>
+                    <div className="w-full">
+                      <Carousel
+                        title="DiálogoX: Ecuación vs Polinomio"
+                        slides={[1, 2, 3, 4].map(num => (
+                          <img
+                            key={`q1-${num}`}
+                            src={`/img/s9-q1-${num}.jpg`}
+                            alt={`Captura Q1-${num}`}
+                            className="w-full h-full object-contain bg-slate-900/50 rounded-2xl p-2 border border-slate-200/10"
+                            onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement!.innerHTML = `<div class="p-8 text-center text-slate-400 flex flex-col items-center"><svg class="w-8 h-8 mb-2 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg><p class="text-xs font-bold uppercase tracking-widest">Sube tus fotos como s9-q1-${num}.jpg en /img/</p></div>`; }}
+                          />
+                        ))}
+                      />
+                    </div>
+                  </div>
+                  <div className="glass-panel p-8 rounded-2xl relative border-t-4 border-t-teal-400 dark:border-t-teal-600">
+                    <h4 className="font-bold text-lg mb-2 text-teal-500">Pregunta 2 al AI Studio:</h4>
+                    <p className="text-slate-700 dark:text-slate-300 italic text-lg mb-6 border-l-4 border-teal-300 dark:border-teal-700 pl-4 py-2">
+                       "¿Por qué razón matemática es que al aplicar reglas de despeje para resolver una ecuación lineal, se pasan términos al otro lado de la ecuación invirtiendo su operación, por ejemplo si un término suma pasa a restar y si un término multiplica pasa a dividir?"
+                    </p>
+                    <div className="w-full">
+                      <Carousel
+                        title="DiálogoX: Segunda Pregunta"
+                        slides={[1, 2, 3, 4, 5].map(num => (
+                          <img
+                            key={`q2-${num}`}
+                            src={`/img/s9-q2-${num}.jpg`}
+                            alt={`Captura Q2-${num}`}
+                            className="w-full h-full object-contain bg-slate-900/50 rounded-2xl p-2 border border-slate-200/10"
+                            onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement!.innerHTML = `<div class="p-8 text-center text-slate-400 flex flex-col items-center"><svg class="w-8 h-8 mb-2 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg><p class="text-xs font-bold uppercase tracking-widest">Sube tus fotos como s9-q2-${num}.jpg en /img/</p></div>`; }}
+                          />
+                        ))}
+                      />
+                    </div>
+                  </div>
+                </section>
+                <section className="glass-panel p-8 sm:p-10 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 p-8 opacity-5"><BookOpen className="w-64 h-64" /></div>
+                  <h3 className="font-bold text-slate-800 dark:text-slate-100 border-l-4 border-teal-500 pl-4 mb-6 uppercase text-sm tracking-widest flex items-center">
+                    2. Ejercicios Prácticos
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-400 mb-6 text-sm relative z-10">
+                    Infografía desarrollada en clase sobre Ecuaciones Lineales, siguiendo las instrucciones del PDF de la materia y de AI-Studio.
+                  </p>
+                  <div className="relative z-10 w-full rounded-2xl overflow-hidden border border-teal-500/20 shadow-lg hover:border-teal-500/50 transition-colors">
+                    <img
+                      src="/img/Infografia%20Ecuaciones%20Lineales.jpeg"
+                      alt="Infografía Ecuaciones Lineales"
+                      className="w-full h-auto object-contain bg-white dark:bg-slate-900/50 rounded-2xl"
+                    />
+                  </div>
+                </section>
+                <section className="bg-gradient-to-br from-teal-900/80 to-slate-900 p-8 sm:p-10 rounded-3xl relative overflow-hidden shadow-xl border border-teal-500/20 text-white">
+                  <div className="relative z-10">
+                    <h3 className="font-bold border-l-4 border-teal-400 pl-4 mb-6 uppercase text-sm tracking-widest flex items-center text-teal-50">
+                      3. Autoevaluación AI-Mirror
+                    </h3>
+                    <div className="space-y-6">
+                      <div className="bg-black/20 p-6 rounded-2xl border border-white/5">
+                        <div className="space-y-4 mb-4">
+                          <div className="flex items-start gap-3">
+                            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-teal-500/30 border border-teal-400/50 flex items-center justify-center text-teal-300 font-bold text-xs">1</span>
+                            <h4 className="text-base font-semibold text-teal-200 leading-relaxed">
+                              En una escala del 1 al 5, donde 1 es lo más bajo y 5 lo más alto, ¿qué tan preparado o preparada me siento para traducir situaciones o problemas de contexto real en expresiones matemáticas para plantear una ecuación?
+                            </h4>
+                          </div>
+                          <div className="flex items-start gap-3">
+                            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-teal-500/30 border border-teal-400/50 flex items-center justify-center text-teal-300 font-bold text-xs">2</span>
+                            <h4 className="text-base font-semibold text-teal-200 leading-relaxed">
+                              ¿Cómo puedo mejorar esta habilidad?
+                            </h4>
+                          </div>
+                        </div>
+                        <div className="mt-4 pt-4 border-t border-white/10 space-y-6">
+                          {/* Score Badge */}
+                          <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-2 bg-teal-500/20 border border-teal-400/40 rounded-2xl px-5 py-3">
+                              <span className="text-4xl font-black text-teal-300">4</span>
+                              <div className="flex flex-col leading-tight">
+                                <span className="text-teal-400 text-xs font-bold uppercase tracking-widest">/ 5</span>
+                                <span className="text-teal-200 text-xs">Mi preparación</span>
+                              </div>
+                            </div>
+                            <p className="text-teal-100 text-sm leading-relaxed flex-1">
+                              Un 4 confirma que mi cerebro ya tiene el &quot;cableado&quot; lógico estructurado gracias a la programación. Lo que experimento no es falta de lógica, sino <span className="text-emerald-300 font-semibold">sintaxis oxidada</span>.
+                            </p>
+                          </div>
+
+                          {/* Strategy 1: Mapeo de Sintaxis */}
+                          <div className="bg-teal-900/40 p-5 rounded-xl border border-teal-500/30">
+                            <h5 className="text-emerald-300 font-bold mb-3 text-sm flex items-center gap-2">🌉 1. Crea tu &quot;Mapeo de Sintaxis&quot; (Código vs. Álgebra)</h5>
+                            <div className="overflow-x-auto rounded-lg border border-teal-700/40">
+                              <table className="w-full text-xs text-left">
+                                <thead className="bg-teal-800/60 text-teal-200 uppercase tracking-wider">
+                                  <tr>
+                                    <th className="p-3 border-b border-teal-700/40">Programación</th>
+                                    <th className="p-3 border-b border-teal-700/40">Álgebra</th>
+                                    <th className="p-3 border-b border-teal-700/40">¿Para qué sirve?</th>
+                                  </tr>
+                                </thead>
+                                <tbody className="divide-y divide-teal-800/40 text-teal-100">
+                                  <tr className="hover:bg-teal-800/20 transition-colors">
+                                    <td className="p-3 font-mono text-teal-300">let x = ?;</td>
+                                    <td className="p-3">Incógnitas (x, y, z)</td>
+                                    <td className="p-3 text-teal-200/70">Guardar un valor desconocido que el sistema debe descubrir.</td>
+                                  </tr>
+                                  <tr className="hover:bg-teal-800/20 transition-colors">
+                                    <td className="p-3 font-mono text-teal-300">Bloque / Expresión</td>
+                                    <td className="p-3">Polinomio (3x² + 2x)</td>
+                                    <td className="p-3 text-teal-200/70">Definir operaciones sin ejecutar una igualdad.</td>
+                                  </tr>
+                                  <tr className="hover:bg-teal-800/20 transition-colors">
+                                    <td className="p-3 font-mono text-teal-300">Operador ==</td>
+                                    <td className="p-3">Ecuación (3x + 5 = 20)</td>
+                                    <td className="p-3 text-teal-200/70">Establecer una condición rígida que debe cumplirse.</td>
+                                  </tr>
+                                  <tr className="hover:bg-teal-800/20 transition-colors">
+                                    <td className="p-3 font-mono text-teal-300">Refactorizar código</td>
+                                    <td className="p-3">Factorización</td>
+                                    <td className="p-3 text-teal-200/70">Hacer la expresión más eficiente sin cambiar su resultado.</td>
+                                  </tr>
+                                  <tr className="hover:bg-teal-800/20 transition-colors">
+                                    <td className="p-3 font-mono text-teal-300">calcular(5)</td>
+                                    <td className="p-3">Evaluar P(5)</td>
+                                    <td className="p-3 text-teal-200/70">Reemplazar x por un número real para obtener un resultado.</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+
+                          {/* Strategy 2 */}
+                          <div className="bg-teal-900/40 p-5 rounded-xl border border-teal-500/30">
+                            <h5 className="text-emerald-300 font-bold mb-2 text-sm flex items-center gap-2">🛠️ 2. Ingeniería Inversa de Problemas</h5>
+                            <p className="text-teal-100 text-sm leading-relaxed">
+                              No empezar por la matemática, sino por el resultado. Tomar una fórmula de la vida diaria, escribirla en palabras, sustituir las partes variables por <span className="font-mono text-teal-300">x</span> o <span className="font-mono text-teal-300">y</span> y así crear mi propio modelo matemático.
+                            </p>
+                          </div>
+
+                          {/* Strategy 3 */}
+                          <div className="bg-teal-900/40 p-5 rounded-xl border border-teal-500/30">
+                            <h5 className="text-emerald-300 font-bold mb-2 text-sm flex items-center gap-2">🧠 3. Identificar mis &quot;Puntos Ciegos&quot;</h5>
+                            <ul className="text-teal-100 text-sm space-y-2 mt-2">
+                              <li className="flex items-start gap-2">
+                                <span className="text-teal-400 mt-0.5">▸</span>
+                                <span><span className="font-semibold text-teal-200">Orden de restas:</span> &quot;La diferencia entre 10 y un número&quot; → <span className="font-mono text-teal-300">10 - x</span>, pero &quot;un número disminuido en 10&quot; → <span className="font-mono text-teal-300">x - 10</span>.</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-teal-400 mt-0.5">▸</span>
+                                <span><span className="font-semibold text-teal-200">Paréntesis ocultos:</span> &quot;El doble de la suma de dos números&quot; → <span className="font-mono text-teal-300">2(x + y)</span>, no <span className="font-mono text-teal-300">2x + y</span>.</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </motion.div>
+          ) : activeWeek === 10 ? (
+            <motion.div key="week-10" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }} className="space-y-16">
+              <header className="text-center relative">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-rose-500/20 rounded-full blur-3xl" />
+                <h2 className="text-4xl font-black text-slate-800 dark:text-white mb-4 relative">
+                  Módulo 5: <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500">Semana 10</span>
+                </h2>
+                <div className="h-1.5 w-24 bg-gradient-to-r from-rose-500 to-pink-500 mx-auto rounded-full"></div>
+              </header>
+
+              <div className="space-y-16">
+                <section>
+                  <h3 className="font-bold text-slate-800 dark:text-slate-100 border-l-4 border-rose-500 pl-4 mb-8 uppercase text-sm tracking-widest flex items-center">
+                    1. Interacción con DiálogoX
+                  </h3>
+                  <div className="glass-panel p-8 rounded-2xl relative border-t-4 border-t-rose-400 dark:border-t-rose-600">
+                    <h4 className="font-bold text-lg mb-2 text-rose-500">Pregunta al AI Studio:</h4>
+                    <p className="text-slate-700 dark:text-slate-300 italic text-lg mb-6 border-l-4 border-rose-300 dark:border-rose-700 pl-4 py-2">
+                      &quot;¿Qué tipo de situaciones cotidianas o de contextos reales pueden ser representadas por medio de una ecuación cuadrática?&quot;
+                    </p>
+                    <div className="w-full">
+                      <Carousel
+                        title="DiálogoX: Ecuaciones Cuadráticas en la Vida Real"
+                        slides={[1, 2, 3, 4].map(num => (
+                          <img
+                            key={`s10-q1-${num}`}
+                            src={`/img/s10-q1-${num}.jpg`}
+                            alt={`Captura Q1-${num}`}
+                            className="w-full h-full object-contain bg-slate-900/50 rounded-2xl p-2 border border-slate-200/10"
+                            onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement!.innerHTML = `<div class="p-8 text-center text-slate-400 flex flex-col items-center"><svg class="w-8 h-8 mb-2 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg><p class="text-xs font-bold uppercase tracking-widest">Imagen s10-q1-${num}.jpg</p></div>`; }}
+                          />
+                        ))}
+                      />
+                    </div>
+                  </div>
+                </section>
+                <section className="glass-panel p-8 sm:p-10 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 p-8 opacity-5"><BookOpen className="w-64 h-64" /></div>
+                  <h3 className="font-bold text-slate-800 dark:text-slate-100 border-l-4 border-rose-500 pl-4 mb-6 uppercase text-sm tracking-widest flex items-center">
+                    2. Ejercicios Prácticos
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-400 mb-6 text-sm relative z-10">
+                    A continuación se presentan diversos ejercicios para practicar. Las respuestas se incluyen para que pueda verificar su trabajo.
+                  </p>
+
+                  <h4 className="font-bold text-slate-700 dark:text-slate-200 uppercase tracking-widest text-xs mb-4 mt-6 relative z-10">A) Ecuaciones Lineales</h4>
+                  <div className="grid md:grid-cols-2 gap-6 relative z-10 mb-8">
+                    {exercisesW10Linear.map((item, idx) => (
+                      <MathCard key={`w10l-${idx}`} expression={item.expr} sub={item.sub} result={item.res} steps={item.steps} />
+                    ))}
+                  </div>
+
+                  <h4 className="font-bold text-slate-700 dark:text-slate-200 uppercase tracking-widest text-xs mb-4 mt-2 relative z-10">B) Ecuaciones Cuadráticas</h4>
+                  <div className="grid md:grid-cols-2 gap-6 relative z-10 mb-8">
+                    {exercisesW10Quadratic.map((item, idx) => (
+                      <MathCard key={`w10q-${idx}`} expression={item.expr} sub={item.sub} result={item.res} steps={item.steps} />
+                    ))}
+                  </div>
+
+                  <h4 className="font-bold text-slate-700 dark:text-slate-200 uppercase tracking-widest text-xs mb-4 mt-2 relative z-10">C) Ecuaciones de Valor Absoluto</h4>
+                  <div className="grid md:grid-cols-2 gap-6 relative z-10 mb-8">
+                    {exercisesW10AbsVal.map((item, idx) => (
+                      <MathCard key={`w10a-${idx}`} expression={item.expr} sub={item.sub} result={item.res} steps={item.steps} />
+                    ))}
+                  </div>
+
+                  <h4 className="font-bold text-slate-700 dark:text-slate-200 uppercase tracking-widest text-xs mb-4 mt-2 relative z-10">D) Ecuaciones con Radicales</h4>
+                  <div className="grid md:grid-cols-2 gap-6 relative z-10 mb-8">
+                    {exercisesW10Radical.map((item, idx) => (
+                      <MathCard key={`w10r-${idx}`} expression={item.expr} sub={item.sub} result={item.res} steps={item.steps} />
+                    ))}
+                  </div>
+
+                  <h4 className="font-bold text-slate-700 dark:text-slate-200 uppercase tracking-widest text-xs mb-4 mt-2 relative z-10">E) Inecuaciones</h4>
+                  <div className="grid md:grid-cols-2 gap-6 relative z-10 mb-8">
+                    {exercisesW10Ineq.map((item, idx) => (
+                      <MathCard key={`w10i-${idx}`} expression={item.expr} sub={item.sub} result={item.res} steps={item.steps} />
+                    ))}
+                  </div>
+
+                  <h4 className="font-bold text-slate-700 dark:text-slate-200 uppercase tracking-widest text-xs mb-4 mt-2 relative z-10">F) Inecuaciones de Valor Absoluto</h4>
+                  <div className="grid md:grid-cols-2 gap-6 relative z-10">
+                    {exercisesW10AbsIneq.map((item, idx) => (
+                      <MathCard key={`w10ai-${idx}`} expression={item.expr} sub={item.sub} result={item.res} steps={item.steps} />
+                    ))}
+                  </div>
+                </section>
+                <section className="bg-gradient-to-br from-rose-900/80 to-slate-900 p-8 sm:p-10 rounded-3xl relative overflow-hidden shadow-xl border border-rose-500/20 text-white">
+                  <div className="relative z-10">
+                    <h3 className="font-bold border-l-4 border-rose-400 pl-4 mb-6 uppercase text-sm tracking-widest flex items-center text-rose-50">
+                      3. Autoevaluación AI-Mirror
+                    </h3>
+                    <div className="space-y-6">
+                      <div className="bg-black/20 p-6 rounded-2xl border border-white/5">
+                        <h4 className="text-lg font-bold mb-3 text-rose-300">Pregunta pendiente...</h4>
+                        <div className="mt-4 pt-4 border-t border-white/10">
+                          <div className="bg-rose-900/40 p-5 rounded-xl border border-rose-500/30 shadow-inner">
+                            <p className="text-rose-100 font-medium italic mb-2 text-sm leading-relaxed whitespace-pre-line border-l-4 border-pink-400 pl-4 py-1">"Respuesta pendiente..."</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </motion.div>
+          ) : activeWeek === 11 ? (
+            <motion.div key="week-11" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }} className="space-y-16">
+              <header className="text-center relative">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-emerald-500/20 rounded-full blur-3xl" />
+                <h2 className="text-4xl font-black text-slate-800 dark:text-white mb-4 relative">
+                  Módulo 6: <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-green-500">Semana 11</span>
+                </h2>
+                <div className="h-1.5 w-24 bg-gradient-to-r from-emerald-500 to-green-500 mx-auto rounded-full"></div>
+              </header>
+
+              <div className="space-y-16">
+                <section>
+                  <h3 className="font-bold text-slate-800 dark:text-slate-100 border-l-4 border-emerald-500 pl-4 mb-8 uppercase text-sm tracking-widest flex items-center">
+                    1. Interacción con DiálogoX
+                  </h3>
+                  <div className="glass-panel p-8 rounded-2xl relative border-t-4 border-t-emerald-400 dark:border-t-emerald-600">
+                    <h4 className="font-bold text-lg mb-2 text-emerald-500">Pregunta al AI Studio:</h4>
+                    <p className="text-slate-700 dark:text-slate-300 italic text-lg mb-6 border-l-4 border-emerald-300 dark:border-emerald-700 pl-4 py-2">
+                       "Pendiente..."
+                    </p>
+                  </div>
+                </section>
+                <section className="glass-panel p-8 sm:p-10 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 p-8 opacity-5"><BookOpen className="w-64 h-64" /></div>
+                  <h3 className="font-bold text-slate-800 dark:text-slate-100 border-l-4 border-emerald-500 pl-4 mb-6 uppercase text-sm tracking-widest flex items-center">
+                    2. Ejercicios Prácticos
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-400 mb-8 text-sm relative z-10">Pendiente de agregar...</p>
+                </section>
+                <section className="bg-gradient-to-br from-emerald-900/80 to-slate-900 p-8 sm:p-10 rounded-3xl relative overflow-hidden shadow-xl border border-emerald-500/20 text-white">
+                  <div className="relative z-10">
+                    <h3 className="font-bold border-l-4 border-emerald-400 pl-4 mb-6 uppercase text-sm tracking-widest flex items-center text-emerald-50">
+                      3. Autoevaluación AI-Mirror
+                    </h3>
+                    <div className="space-y-6">
+                      <div className="bg-black/20 p-6 rounded-2xl border border-white/5">
+                        <h4 className="text-lg font-bold mb-3 text-emerald-300">Pregunta pendiente...</h4>
+                        <div className="mt-4 pt-4 border-t border-white/10">
+                          <div className="bg-emerald-900/40 p-5 rounded-xl border border-emerald-500/30 shadow-inner">
+                            <p className="text-emerald-100 font-medium italic mb-2 text-sm leading-relaxed whitespace-pre-line border-l-4 border-green-400 pl-4 py-1">"Respuesta pendiente..."</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </motion.div>
+          ) : activeWeek === 12 ? (
+            <motion.div key="week-12" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }} className="space-y-16">
+              <header className="text-center relative">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-sky-500/20 rounded-full blur-3xl" />
+                <h2 className="text-4xl font-black text-slate-800 dark:text-white mb-4 relative">
+                  Módulo 6: <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-indigo-500">Semana 12</span>
+                </h2>
+                <div className="h-1.5 w-24 bg-gradient-to-r from-sky-500 to-indigo-500 mx-auto rounded-full"></div>
+              </header>
+
+              <div className="space-y-16">
+                <section>
+                  <h3 className="font-bold text-slate-800 dark:text-slate-100 border-l-4 border-sky-500 pl-4 mb-8 uppercase text-sm tracking-widest flex items-center">
+                    1. Interacción con DiálogoX
+                  </h3>
+                  <div className="glass-panel p-8 rounded-2xl relative border-t-4 border-t-sky-400 dark:border-t-sky-600">
+                    <h4 className="font-bold text-lg mb-2 text-sky-500">Pregunta al AI Studio:</h4>
+                    <p className="text-slate-700 dark:text-slate-300 italic text-lg mb-6 border-l-4 border-sky-300 dark:border-sky-700 pl-4 py-2">
+                       "Pendiente..."
+                    </p>
+                  </div>
+                </section>
+                <section className="glass-panel p-8 sm:p-10 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 p-8 opacity-5"><BookOpen className="w-64 h-64" /></div>
+                  <h3 className="font-bold text-slate-800 dark:text-slate-100 border-l-4 border-sky-500 pl-4 mb-6 uppercase text-sm tracking-widest flex items-center">
+                    2. Ejercicios Prácticos
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-400 mb-8 text-sm relative z-10">Pendiente de agregar...</p>
+                </section>
+                <section className="bg-gradient-to-br from-sky-900/80 to-slate-900 p-8 sm:p-10 rounded-3xl relative overflow-hidden shadow-xl border border-sky-500/20 text-white">
+                  <div className="relative z-10">
+                    <h3 className="font-bold border-l-4 border-sky-400 pl-4 mb-6 uppercase text-sm tracking-widest flex items-center text-sky-50">
+                      3. Autoevaluación AI-Mirror
+                    </h3>
+                    <div className="space-y-6">
+                      <div className="bg-black/20 p-6 rounded-2xl border border-white/5">
+                        <h4 className="text-lg font-bold mb-3 text-sky-300">Pregunta pendiente...</h4>
+                        <div className="mt-4 pt-4 border-t border-white/10">
+                          <div className="bg-sky-900/40 p-5 rounded-xl border border-sky-500/30 shadow-inner">
+                            <p className="text-sky-100 font-medium italic mb-2 text-sm leading-relaxed whitespace-pre-line border-l-4 border-blue-400 pl-4 py-1">"Respuesta pendiente..."</p>
                           </div>
                         </div>
                       </div>
