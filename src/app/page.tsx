@@ -7,6 +7,7 @@ import { Carousel } from "@/components/Carousel";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, Code2 } from "lucide-react";
 import { PostGISChart } from "@/components/PostGISChart";
+import { RollerCoasterChart } from "@/components/RollerCoasterChart";
 
 // Placerholders for missing images to maintain premium aesthetic
 const ImgPlaceholder = ({ text, sub }: { text: string; sub: string }) => (
@@ -1184,7 +1185,78 @@ export default function Home() {
                   <h3 className="font-bold text-slate-800 dark:text-slate-100 border-l-4 border-sky-500 pl-4 mb-6 uppercase text-sm tracking-widest flex items-center">
                     2. Ejercicios Prácticos
                   </h3>
-                  <p className="text-slate-600 dark:text-slate-400 mb-8 text-sm relative z-10">Pendiente de agregar...</p>
+                  <p className="text-slate-600 dark:text-slate-400 mb-8 text-sm relative z-10">
+                    Aplica los conceptos de monotonía en un entorno físico real, simulando la trayectoria de una montaña rusa y analizando sus intervalos de crecimiento, decrecimiento y el punto máximo.
+                  </p>
+
+                  {/* Función elegida */}
+                  <div className="relative z-10 bg-sky-50 dark:bg-sky-900/20 border border-sky-200 dark:border-sky-700/40 rounded-2xl p-6 mb-8">
+                    <h4 className="font-bold text-sky-700 dark:text-sky-300 mb-3 text-sm uppercase tracking-widest">Función de la Trayectoria</h4>
+                    <div className="bg-white dark:bg-slate-900/60 rounded-xl p-4 border border-sky-300/40 dark:border-sky-700/30 mb-4">
+                      <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-3 text-center">Función a trozos r(x) — Trayectoria</p>
+                      <div className="space-y-1 font-mono text-xs text-sky-600 dark:text-sky-300 text-center">
+                        <p>r(x) = &minus;x² + 2x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, x ∈ [0, 3]</p>
+                        <p>r(x) = x &minus; 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, x ∈ (3, 7]</p>
+                        <p>r(x) = x² &minus; 16x + 64, x ∈ (7, 10]</p>
+                        <p>r(x) = 14 &minus; x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, x ∈ (10, 14]</p>
+                        <p>r(x) = 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, x ∈ (14, 18]</p>
+                      </div>
+                      <p className="text-slate-500 dark:text-slate-400 text-xs mt-2 text-center">Dominio del recorrido: x ∈ [0, 18]</p>
+                    </div>
+                    <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                      Derivando por segmento: r&apos;(x) = &minus;2x + 2 en [0,3] → cero en <span className="font-semibold">x=1</span> (local max). r&apos;(x) = 2x&minus;16 en (7,10] → cero en <span className="font-semibold">x=8</span> (local min). En (10,14] siempre r&apos;(x)=&minus;1 (decreciente).
+                    </p>
+                  </div>
+
+                  {/* 3 Preguntas de análisis */}
+                  <div className="relative z-10 space-y-4 mb-8">
+                    <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-sky-200 dark:border-sky-800/40 overflow-hidden">
+                      <div className="flex items-start gap-3 p-4">
+                        <span className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500 flex items-center justify-center text-white font-black text-xs">1</span>
+                        <div className="flex-1">
+                          <p className="text-slate-700 dark:text-slate-200 font-semibold text-sm mb-2">¿En qué intervalos la función es creciente (el vagón sube)?</p>
+                          <p className="text-emerald-700 dark:text-emerald-300 text-sm bg-emerald-50 dark:bg-emerald-900/30 rounded-lg px-3 py-2 border-l-4 border-emerald-400">
+                            📈 <span className="font-bold">Creciente en [0,1] ∪ [3,7] ∪ [8,10]:</span> El vagón sube en tres tramos — al inicio, en el tramo lineal y en la parábola antes del máximo.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-sky-200 dark:border-sky-800/40 overflow-hidden">
+                      <div className="flex items-start gap-3 p-4">
+                        <span className="flex-shrink-0 w-7 h-7 rounded-full bg-red-500 flex items-center justify-center text-white font-black text-xs">2</span>
+                        <div className="flex-1">
+                          <p className="text-slate-700 dark:text-slate-200 font-semibold text-sm mb-2">¿En cuáles es decreciente (el vagón baja)?</p>
+                          <p className="text-red-700 dark:text-red-300 text-sm bg-red-50 dark:bg-red-900/30 rounded-lg px-3 py-2 border-l-4 border-red-400">
+                            📉 <span className="font-bold">Decreciente en [1,3] ∪ [7,8] ∪ [10,14].</span> Constante en [14,18] (tramo final plano).
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-sky-200 dark:border-sky-800/40 overflow-hidden">
+                      <div className="flex items-start gap-3 p-4">
+                        <span className="flex-shrink-0 w-7 h-7 rounded-full bg-amber-500 flex items-center justify-center text-white font-black text-xs">3</span>
+                        <div className="flex-1">
+                          <p className="text-slate-700 dark:text-slate-200 font-semibold text-sm mb-2">Identifica las coordenadas (x, y) del vértice máximo (el punto más alto).</p>
+                          <p className="text-amber-700 dark:text-amber-300 text-sm bg-amber-50 dark:bg-amber-900/30 rounded-lg px-3 py-2 border-l-4 border-amber-400">
+                            🏔️ <span className="font-bold">Vértice Máximo Absoluto: (10, 4)</span> — El punto más alto de toda la atracción se alcanza en x = 10, con altura y = 4. r(10) = 10² &minus; 16(10) + 64 = 4.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Gráfica interactiva */}
+                  <div className="relative z-10">
+                    <h4 className="font-bold text-slate-700 dark:text-slate-200 uppercase tracking-widest text-xs mb-4">Simulación Interactiva — Trayectoria de la Montaña Rusa</h4>
+                    <div className="flex flex-wrap gap-3 mb-4 text-xs">
+                      <span className="flex items-center gap-1.5 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-full border border-emerald-300 dark:border-emerald-700"><span className="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>Creciente — vagón sube</span>
+                      <span className="flex items-center gap-1.5 bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300 px-3 py-1 rounded-full border border-red-300 dark:border-red-700"><span className="w-3 h-3 rounded-full bg-red-500 inline-block"></span>Decreciente — vagón baja</span>
+                      <span className="flex items-center gap-1.5 bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 px-3 py-1 rounded-full border border-amber-300 dark:border-amber-700">★ Vértice Máximo (10, 4)</span>
+                    </div>
+                    <RollerCoasterChart />
+                  </div>
                 </section>
                 <section className="bg-gradient-to-br from-sky-900/80 to-slate-900 p-8 sm:p-10 rounded-3xl relative overflow-hidden shadow-xl border border-sky-500/20 text-white">
                   <div className="relative z-10">
@@ -1193,10 +1265,74 @@ export default function Home() {
                     </h3>
                     <div className="space-y-6">
                       <div className="bg-black/20 p-6 rounded-2xl border border-white/5">
-                        <h4 className="text-lg font-bold mb-3 text-sky-300">Pregunta pendiente...</h4>
-                        <div className="mt-4 pt-4 border-t border-white/10">
-                          <div className="bg-sky-900/40 p-5 rounded-xl border border-sky-500/30 shadow-inner">
-                            <p className="text-sky-100 font-medium italic mb-2 text-sm leading-relaxed whitespace-pre-line border-l-4 border-blue-400 pl-4 py-1">"Respuesta pendiente..."</p>
+                        <div className="space-y-4 mb-4">
+                          <div className="flex items-start gap-3">
+                            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-sky-500/30 border border-sky-400/50 flex items-center justify-center text-sky-300 font-bold text-xs">1</span>
+                            <h4 className="text-base font-semibold text-sky-200 leading-relaxed">
+                              Responda las preguntas metacognitivas que aparecen en el AI-Mirror del AI Studio en el &quot;Módulo 5. Funciones&quot;.
+                            </h4>
+                          </div>
+                        </div>
+                        <div className="mt-6 pt-4 border-t border-white/10">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {/* Q1 */}
+                            <div className="bg-sky-900/40 p-4 rounded-xl border border-sky-500/30 shadow-inner flex flex-col justify-between">
+                              <p className="text-sky-100 font-medium text-sm leading-relaxed mb-4">1. Al ver la gráfica de una función, ¿me resulta intuitivo buscar el Dominio leyendo el eje horizontal (x) y el Ámbito leyendo el eje vertical (y)?</p>
+                              <div className="self-start px-3 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 rounded-lg font-bold text-sm">Respuesta: 4 / 5</div>
+                            </div>
+                            
+                            {/* Q2 */}
+                            <div className="bg-sky-900/40 p-4 rounded-xl border border-sky-500/30 shadow-inner flex flex-col justify-between">
+                              <p className="text-sky-100 font-medium text-sm leading-relaxed mb-4">2. ¿Logro entender que la composición de funciones g(f(x)) es como una línea de ensamblaje donde la salida de una máquina se convierte en la entrada de la siguiente?</p>
+                              <div className="self-start px-3 py-1 bg-sky-500/20 text-sky-300 border border-sky-500/50 rounded-lg font-bold text-sm">Sí, comprendo la analogía</div>
+                            </div>
+
+                            {/* Q3 */}
+                            <div className="bg-sky-900/40 p-4 rounded-xl border border-sky-500/30 shadow-inner flex flex-col justify-between">
+                              <p className="text-sky-100 font-medium text-sm leading-relaxed mb-4">3. Al buscar un dominio máximo, ¿recuerdo de forma automática las dos &quot;alarmas&quot; principales: no dividir por cero y no raíces pares de negativos?</p>
+                              <div className="self-start px-3 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 rounded-lg font-bold text-sm">Respuesta: 4 / 5</div>
+                            </div>
+
+                            {/* Q4 */}
+                            <div className="bg-sky-900/40 p-4 rounded-xl border border-sky-500/30 shadow-inner flex flex-col justify-between">
+                              <p className="text-sky-100 font-medium text-sm leading-relaxed mb-4">4. ¿Comprendo que si una función repite una imagen (como una parábola cuadrática en &apos;U&apos;), entonces NO es inyectiva y no puede tener inversa completa?</p>
+                              <div className="self-start px-3 py-1 bg-sky-500/20 text-sky-300 border border-sky-500/50 rounded-lg font-bold text-sm">Entiendo la lógica</div>
+                            </div>
+
+                            {/* Q5 */}
+                            <div className="bg-sky-900/40 p-4 rounded-xl border border-sky-500/30 shadow-inner flex flex-col justify-between">
+                              <p className="text-sky-100 font-medium text-sm leading-relaxed mb-4">5. Sin ver la fórmula, si veo una línea recta, una parábola curva, y una curva asintótica, ¿siento que puedo nombrarlas (Lineal, Cuadrática, Exponencial...)?</p>
+                              <div className="self-start px-3 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 rounded-lg font-bold text-sm">Respuesta: 4 / 5</div>
+                            </div>
+
+                            {/* Q6 */}
+                            <div className="bg-sky-900/40 p-4 rounded-xl border border-sky-500/30 shadow-inner flex flex-col justify-between">
+                              <p className="text-sky-100 font-medium text-sm leading-relaxed mb-4">6. ¿Me queda claro por qué en una función cuadrática, el signo del coeficiente &apos;a&apos; dicta si la parábola tiene un punto mínimo o máximo?</p>
+                              <div className="self-start px-3 py-1 bg-sky-500/20 text-sky-300 border border-sky-500/50 rounded-lg font-bold text-sm">Sí, lo veo claramente</div>
+                            </div>
+
+                            {/* Q7 */}
+                            <div className="bg-sky-900/40 p-4 rounded-xl border border-sky-500/30 shadow-inner md:col-span-2 flex flex-col justify-between">
+                              <p className="text-sky-100 font-medium text-sm leading-relaxed mb-4">7. ¿Logro conectar que el concepto de función matemática (f(x)=y) es idéntico a una &quot;Función&quot; o &quot;Método&quot; en programación, donde x son argumentos y &apos;y&apos; el return?</p>
+                              <div className="self-start px-3 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 rounded-lg font-bold text-sm">Respuesta: 4 / 5</div>
+                            </div>
+                          </div>
+                          
+                          <div className="border-t border-sky-500/20 pt-6 mt-6">
+                            <h4 className="text-sm font-bold mb-4 text-sky-300 uppercase tracking-widest">Evidencia de Autoevaluación en AI-Mirror</h4>
+                            <div className="rounded-xl border border-sky-500/20 overflow-hidden hover:border-sky-500/50 transition-colors">
+                              <Carousel
+                                title="Evidencia AI-Mirror S12"
+                                slides={[1, 2, 3].map(num => (
+                                  <img
+                                    key={`sem12Autoeva${num}`}
+                                    src={`/img/sem12Autoeva${num}.png`}
+                                    alt={`Evidencia autoevaluación ${num}`}
+                                    className="w-full h-full object-contain bg-black/50 rounded-2xl p-2 border border-slate-200/10"
+                                  />
+                                ))}
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
