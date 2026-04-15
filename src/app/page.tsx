@@ -6,6 +6,7 @@ import { MathCard } from "@/components/MathCard";
 import { Carousel } from "@/components/Carousel";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, Code2 } from "lucide-react";
+import { PostGISChart } from "@/components/PostGISChart";
 
 // Placerholders for missing images to maintain premium aesthetic
 const ImgPlaceholder = ({ text, sub }: { text: string; sub: string }) => (
@@ -859,10 +860,46 @@ export default function Home() {
                     </h3>
                     <div className="space-y-6">
                       <div className="bg-black/20 p-6 rounded-2xl border border-white/5">
-                        <h4 className="text-lg font-bold mb-3 text-rose-300">Pregunta pendiente...</h4>
-                        <div className="mt-4 pt-4 border-t border-white/10">
-                          <div className="bg-rose-900/40 p-5 rounded-xl border border-rose-500/30 shadow-inner">
-                            <p className="text-rose-100 font-medium italic mb-2 text-sm leading-relaxed whitespace-pre-line border-l-4 border-pink-400 pl-4 py-1">"Respuesta pendiente..."</p>
+                        <h4 className="text-sm font-bold mb-4 text-rose-400 uppercase tracking-widest">Resumen de Autoevaluación — Módulo 4: Ecuaciones</h4>
+                        <div className="space-y-3">
+                          {[
+                            { q: "Traducción del Lenguaje Natural", a: "Sin responder", warn: true },
+                            { q: "Soluciones Extrañas en Radicales", a: "Entiendo la lógica" },
+                            { q: "Lógica del Valor Absoluto", a: "Sí, lo veo claramente" },
+                            { q: "Análisis del Discriminante (Δ)", a: "Analizo el discriminante primero" },
+                            { q: "Cuidado con Inecuaciones", a: "4" },
+                            { q: "Lectura de Intervalos", a: "Sí, me siento seguro" },
+                            { q: "Conexión con Programación", a: "4" },
+                          ].map((item, idx) => (
+                            <div key={idx} className="bg-slate-900/50 p-4 rounded-lg border border-rose-500/20 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all hover:bg-slate-800/80">
+                              <span className="text-rose-100 text-sm font-medium leading-relaxed tracking-wide">{item.q}</span>
+                              <span className={`px-3 py-1.5 flex-shrink-0 rounded-md text-xs font-bold uppercase tracking-wider text-center border ${(item as { warn?: boolean }).warn ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' : 'bg-rose-500/20 text-rose-300 border-rose-500/30'}`}>
+                                {item.a}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="mt-6 pt-5 border-t border-rose-500/20">
+                          <div className="bg-rose-950/60 p-4 rounded-xl border border-amber-500/30">
+                            <p className="text-amber-200 text-sm leading-relaxed italic">
+                              💡 <span className="font-semibold not-italic text-amber-300">Nota:</span> Copia y pega este resumen en la Gema de DiálogoX y pídele ayuda para reforzar los conceptos donde la autoevaluación fue baja.
+                            </p>
+                          </div>
+                          <div className="border-t border-rose-500/20 pt-6 mt-2">
+                            <h4 className="text-sm font-bold mb-4 text-rose-300 uppercase tracking-widest">Evidencia de Autoevaluación en DiálogoX</h4>
+                            <div className="rounded-xl border border-rose-500/20 overflow-hidden hover:border-rose-500/50 transition-colors">
+                              <Carousel
+                                title="Evidencia AI-Mirror S10"
+                                slides={[1, 2, 3].map(num => (
+                                  <img
+                                    key={num}
+                                    src={`/img/sem10Autoeva${num}.png`}
+                                    alt={`Evidencia autoevaluación ${num}`}
+                                    className="w-full h-full object-contain bg-black/50 rounded-2xl p-2 border border-slate-200/10"
+                                  />
+                                ))}
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -886,11 +923,49 @@ export default function Home() {
                   <h3 className="font-bold text-slate-800 dark:text-slate-100 border-l-4 border-emerald-500 pl-4 mb-8 uppercase text-sm tracking-widest flex items-center">
                     1. Interacción con DiálogoX
                   </h3>
-                  <div className="glass-panel p-8 rounded-2xl relative border-t-4 border-t-emerald-400 dark:border-t-emerald-600">
-                    <h4 className="font-bold text-lg mb-2 text-emerald-500">Pregunta al AI Studio:</h4>
+
+                  {/* Pregunta 1 */}
+                  <div className="glass-panel p-8 rounded-2xl relative border-t-4 border-t-emerald-400 dark:border-t-emerald-600 mb-6">
+                    <h4 className="font-bold text-lg mb-2 text-emerald-500">Pregunta 1 al AI Studio:</h4>
                     <p className="text-slate-700 dark:text-slate-300 italic text-lg mb-6 border-l-4 border-emerald-300 dark:border-emerald-700 pl-4 py-2">
-                       "Pendiente..."
+                      &quot;Bríndame un ejemplo de contexto real para entender la diferencia entre lo que es y lo que no es una función matemática.&quot;
                     </p>
+                    <div className="w-full">
+                      <Carousel
+                        title="DiálogoX: ¿Qué es una función?"
+                        slides={[1, 2, 3].map(num => (
+                          <img
+                            key={`s11-q1-${num}`}
+                            src={`/img/s11-q1-${num}.jpg`}
+                            alt={`Captura Q1-${num}`}
+                            className="w-full h-full object-contain bg-slate-900/50 rounded-2xl p-2 border border-slate-200/10"
+                            onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement!.innerHTML = `<div class="p-8 text-center text-slate-400 flex flex-col items-center"><svg class="w-8 h-8 mb-2 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg><p class="text-xs font-bold uppercase tracking-widest">Sube s11-q1-${num}.jpg en /img/</p></div>`; }}
+                          />
+                        ))}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Pregunta 2 */}
+                  <div className="glass-panel p-8 rounded-2xl relative border-t-4 border-t-emerald-400 dark:border-t-emerald-600">
+                    <h4 className="font-bold text-lg mb-2 text-emerald-500">Pregunta 2 al AI Studio:</h4>
+                    <p className="text-slate-700 dark:text-slate-300 italic text-lg mb-6 border-l-4 border-emerald-300 dark:border-emerald-700 pl-4 py-2">
+                      &quot;Bríndame un ejemplo de contexto real de una función que posea inversa, ¿cómo se usaría la función y cómo se usaría su inversa?&quot;
+                    </p>
+                    <div className="w-full">
+                      <Carousel
+                        title="DiálogoX: Función Inversa"
+                        slides={[1, 2, 3].map(num => (
+                          <img
+                            key={`s11-q2-${num}`}
+                            src={`/img/s11-q2-${num}.jpg`}
+                            alt={`Captura Q2-${num}`}
+                            className="w-full h-full object-contain bg-slate-900/50 rounded-2xl p-2 border border-slate-200/10"
+                            onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement!.innerHTML = `<div class="p-8 text-center text-slate-400 flex flex-col items-center"><svg class="w-8 h-8 mb-2 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg><p class="text-xs font-bold uppercase tracking-widest">Sube s11-q2-${num}.jpg en /img/</p></div>`; }}
+                          />
+                        ))}
+                      />
+                    </div>
                   </div>
                 </section>
                 <section className="glass-panel p-8 sm:p-10 relative overflow-hidden">
@@ -898,7 +973,73 @@ export default function Home() {
                   <h3 className="font-bold text-slate-800 dark:text-slate-100 border-l-4 border-emerald-500 pl-4 mb-6 uppercase text-sm tracking-widest flex items-center">
                     2. Ejercicios Prácticos
                   </h3>
-                  <p className="text-slate-600 dark:text-slate-400 mb-8 text-sm relative z-10">Pendiente de agregar...</p>
+                  <p className="text-slate-600 dark:text-slate-400 mb-8 text-sm relative z-10">
+                    Actividad relacionada con función lineal, presentada en la clase. Con ayuda de la IA se determinó el criterio de una función lineal para un contexto específico, se modeló y se analizaron sus características.
+                  </p>
+
+                  {/* Contexto elegido */}
+                  <div className="relative z-10 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-700/40 rounded-2xl p-6 mb-8">
+                    <h4 className="font-bold text-emerald-700 dark:text-emerald-300 mb-3 text-sm uppercase tracking-widest">Contexto Elegido: Proyección de Almacenamiento PostGIS</h4>
+                    <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-4">
+                      En una base de datos <span className="font-semibold text-emerald-600 dark:text-emerald-300">PostGIS</span>, el tamaño en disco crece de manera aproximadamente lineal conforme se insertan millones de geometrías. La función modela cuántos <strong>Gigabytes</strong> ocupa la base de datos cuando contiene <strong>x millones de geometrías</strong>.
+                    </p>
+                    <div className="bg-white dark:bg-slate-900/60 rounded-xl p-4 border border-emerald-300/40 dark:border-emerald-700/30 text-center">
+                      <p className="text-2xl font-black text-emerald-600 dark:text-emerald-300 math-font tracking-wide">f(x) = 0.48x + 2</p>
+                      <p className="text-slate-500 dark:text-slate-400 text-xs mt-1">m = 0.48 GB/millón · b = 2 GB (tamaño base del sistema)</p>
+                    </div>
+                  </div>
+
+                  {/* Preguntas y respuestas */}
+                  <div className="relative z-10 space-y-4 mb-8">
+                    {[
+                      { n: 1, q: "Con ayuda de la IA, determina el criterio de una función lineal para un contexto específico.", a: "f(x) = 0.48x + 2, donde x = millones de geometrías y f(x) = tamaño en GB. Cada millón de objetos geoespaciales añade ~0.48 GB al disco." },
+                      { n: 2, q: "Represéntala con ayuda de la IA, Polypad o GeoGebra.", a: "Representada con GeoGebra: m = 0.48 (pendiente roja), b = 2 (ordenada al origen azul). Ver gráfica interactiva abajo." },
+                      { n: 3, q: "Determina cuál es el mínimo y máximo valor que podría tomar x (preimagen) según el contexto.", a: "x_mín = 0 (BD vacía, solo ocupa el espacio base) · x_máx = 50 millones de geometrías (proyecto de escala grande). Dominio: x ∈ [0, 50]" },
+                      { n: 4, q: "¿Cuáles son los resultados de esos valores extremos (imágenes)?", a: "f(0) = 0.48(0) + 2 = 2 GB (mínimo)  ·  f(50) = 0.48(50) + 2 = 26 GB (máximo)" },
+                      { n: 5, q: "Encuentre distintos pares ordenados que puedan brindar datos interesantes sobre la función.", a: "(0, 2) · (10, 6.8) · (20, 11.6) · (25, 14) · (30, 16.4) · (40, 21.2) · (50, 26)" },
+                      { n: 6, q: "¿Cómo se comporta la función cuando los valores de x aumentan o disminuyen (crece, decrece o es constante)?", a: "La función es estrictamente creciente: al agregar geometrías el disco siempre crece. La pendiente m = 0.48 > 0 confirma este comportamiento." },
+                      { n: 7, q: "¿Qué otras características notan en la función?", a: "Pendiente m = 0.48: razón de cambio constante. Ordenada al origen b = 2: espacio base de PostGIS sin datos. Abscisa al origen x = -4.17 (sin significado en este contexto, pues x ≥ 0). La función es inyectiva (cada entrada tiene una sola salida)." },
+                    ].map(item => (
+                      <div key={item.n} className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-emerald-200 dark:border-emerald-800/40 overflow-hidden">
+                        <div className="flex items-start gap-3 p-4">
+                          <span className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500 flex items-center justify-center text-white font-black text-xs">{item.n}</span>
+                          <div className="flex-1">
+                            <p className="text-slate-700 dark:text-slate-200 font-semibold text-sm mb-2">{item.q}</p>
+                            <p className="text-emerald-700 dark:text-emerald-300 text-sm leading-relaxed bg-emerald-50 dark:bg-emerald-900/30 rounded-lg px-3 py-2 border-l-4 border-emerald-400">{item.a}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Gráfica interactiva */}
+                  <div className="relative z-10">
+                    <h4 className="font-bold text-slate-700 dark:text-slate-200 uppercase tracking-widest text-xs mb-4">Representación Gráfica Interactiva — f(x) = 0.48x + 2</h4>
+                    <PostGISChart />
+                  </div>
+
+                  {/* Tabla de pares ordenados */}
+                  <div className="relative z-10 mt-8">
+                    <h4 className="font-bold text-slate-700 dark:text-slate-200 uppercase tracking-widest text-xs mb-4">Tabla de Pares Ordenados</h4>
+                    <div className="overflow-x-auto rounded-xl border border-emerald-200 dark:border-emerald-800/40">
+                      <table className="w-full text-sm text-center">
+                        <thead className="bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 uppercase tracking-wider text-xs">
+                          <tr>
+                            {[0, 5, 10, 15, 20, 25, 30, 40, 50].map(x => (
+                              <th key={x} className="p-3 border-b border-emerald-200 dark:border-emerald-800/30">x = {x}</th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr className="divide-x divide-emerald-100 dark:divide-emerald-800/20">
+                            {[0, 5, 10, 15, 20, 25, 30, 40, 50].map(x => (
+                              <td key={x} className="p-3 font-mono font-bold text-slate-700 dark:text-slate-200 text-xs">{(0.48 * x + 2).toFixed(1)} GB</td>
+                            ))}
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </section>
                 <section className="bg-gradient-to-br from-emerald-900/80 to-slate-900 p-8 sm:p-10 rounded-3xl relative overflow-hidden shadow-xl border border-emerald-500/20 text-white">
                   <div className="relative z-10">
@@ -907,10 +1048,93 @@ export default function Home() {
                     </h3>
                     <div className="space-y-6">
                       <div className="bg-black/20 p-6 rounded-2xl border border-white/5">
-                        <h4 className="text-lg font-bold mb-3 text-emerald-300">Pregunta pendiente...</h4>
+                        <div className="space-y-4 mb-4">
+                          <div className="flex items-start gap-3">
+                            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/30 border border-emerald-400/50 flex items-center justify-center text-emerald-300 font-bold text-xs">1</span>
+                            <h4 className="text-base font-semibold text-emerald-200 leading-relaxed">
+                              En una escala del 1 al 5, donde 1 es lo más bajo y 5 lo más alto, ¿comprendo la diferencia entre un polinomio, una ecuación y una función?
+                            </h4>
+                          </div>
+                          <div className="flex items-start gap-3">
+                            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/30 border border-emerald-400/50 flex items-center justify-center text-emerald-300 font-bold text-xs">2</span>
+                            <h4 className="text-base font-semibold text-emerald-200 leading-relaxed">
+                              ¿Cómo puedo comprender mejor esta diferencia? (con ayuda de la Gema de DiálogoX)
+                            </h4>
+                          </div>
+                        </div>
                         <div className="mt-4 pt-4 border-t border-white/10">
-                          <div className="bg-emerald-900/40 p-5 rounded-xl border border-emerald-500/30 shadow-inner">
-                            <p className="text-emerald-100 font-medium italic mb-2 text-sm leading-relaxed whitespace-pre-line border-l-4 border-green-400 pl-4 py-1">"Respuesta pendiente..."</p>
+                          <div className="bg-emerald-900/40 p-5 rounded-xl border border-emerald-500/30 shadow-inner space-y-5">
+                            {/* Score */}
+                            <div className="flex items-center gap-4 pb-4 border-b border-emerald-700/40">
+                              <div className="flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/40 rounded-2xl px-5 py-3">
+                                <span className="text-4xl font-black text-emerald-300">4</span>
+                                <div className="flex flex-col leading-tight">
+                                  <span className="text-emerald-400 text-xs font-bold uppercase tracking-widest">/ 5</span>
+                                  <span className="text-emerald-200 text-xs">Mi comprensión</span>
+                                </div>
+                              </div>
+                              <p className="text-emerald-100 text-sm leading-relaxed flex-1">
+                                Comprendo bien la diferencia entre los tres conceptos gracias a las <span className="text-emerald-300 font-semibold">analogías con programación</span> que ofrece DiálogoX.
+                              </p>
+                            </div>
+
+                            {/* 3 Concept Cards */}
+                            <div className="space-y-4">
+                              {/* Polinomio */}
+                              <div className="bg-slate-900/60 rounded-xl border border-blue-500/30 p-4">
+                                <div className="flex items-center gap-2 mb-3">
+                                  <span className="text-lg">📦</span>
+                                  <h5 className="text-blue-300 font-bold text-sm">1. El Polinomio — &quot;El Objeto&quot; (Sustantivo)</h5>
+                                </div>
+                                <div className="space-y-2 text-xs">
+                                  <p className="text-slate-300"><span className="text-blue-400 font-semibold">Propósito:</span> Definir una cantidad o estructura. No afirma nada, solo <em>es</em>.</p>
+                                  <p className="text-slate-300"><span className="text-blue-400 font-semibold">Analogía:</span> Como definir una <span className="font-mono bg-slate-800 px-1 rounded text-blue-300">class Carro</span> — es el molde, sin signo de igual.</p>
+                                  <p className="text-slate-300"><span className="text-blue-400 font-semibold">Ejemplo:</span> <span className="font-mono bg-slate-800 px-1 rounded text-emerald-300">3x² + 2x - 5</span></p>
+                                </div>
+                              </div>
+
+                              {/* Ecuación */}
+                              <div className="bg-slate-900/60 rounded-xl border border-amber-500/30 p-4">
+                                <div className="flex items-center gap-2 mb-3">
+                                  <span className="text-lg">⚖️</span>
+                                  <h5 className="text-amber-300 font-bold text-sm">2. La Ecuación — &quot;El Problema&quot; (Oración Interrogativa)</h5>
+                                </div>
+                                <div className="space-y-2 text-xs">
+                                  <p className="text-slate-300"><span className="text-amber-400 font-semibold">Propósito:</span> Encontrar el valor de la variable (raíz) que equilibra la balanza.</p>
+                                  <p className="text-slate-300"><span className="text-amber-400 font-semibold">Analogía:</span> Como una comparación <span className="font-mono bg-slate-800 px-1 rounded text-amber-300">if precio == 500</span> — buscás el momento exacto en que se cumple.</p>
+                                  <p className="text-slate-300"><span className="text-amber-400 font-semibold">Ejemplo:</span> <span className="font-mono bg-slate-800 px-1 rounded text-emerald-300">3x² + 2x - 5 = 0</span> <span className="text-slate-400 italic">(¿qué x hace que esto dé cero?)</span></p>
+                                </div>
+                              </div>
+
+                              {/* Función */}
+                              <div className="bg-slate-900/60 rounded-xl border border-emerald-500/30 p-4">
+                                <div className="flex items-center gap-2 mb-3">
+                                  <span className="text-lg">⚙️</span>
+                                  <h5 className="text-emerald-300 font-bold text-sm">3. La Función — &quot;La Máquina&quot; (Verbo / Proceso)</h5>
+                                </div>
+                                <div className="space-y-2 text-xs">
+                                  <p className="text-slate-300"><span className="text-emerald-400 font-semibold">Propósito:</span> Modelar un comportamiento. Si cambio el input, ¿qué pasa con el output?</p>
+                                  <p className="text-slate-300"><span className="text-emerald-400 font-semibold">Analogía:</span> Literalmente una función <span className="font-mono bg-slate-800 px-1 rounded text-emerald-300">function calcularPrecio(x) {"{ return ... }"}</span></p>
+                                  <p className="text-slate-300"><span className="text-emerald-400 font-semibold">Ejemplo:</span> <span className="font-mono bg-slate-800 px-1 rounded text-emerald-300">f(x) = 3x² + 2x - 5</span> <span className="text-slate-400 italic">(graficar o transformar datos)</span></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="border-t border-emerald-500/20 pt-6 mt-4">
+                            <h4 className="text-sm font-bold mb-4 text-emerald-300 uppercase tracking-widest">Evidencia de Autoevaluación en DiálogoX</h4>
+                            <div className="rounded-xl border border-emerald-500/20 overflow-hidden hover:border-emerald-500/50 transition-colors">
+                              <Carousel
+                                title="Evidencia AI-Mirror S11"
+                                slides={[1, 2, 3].map(num => (
+                                  <img
+                                    key={num}
+                                    src={`/img/sem11Autoeva${num}.png`}
+                                    alt={`Evidencia autoevaluación ${num}`}
+                                    className="w-full h-full object-contain bg-black/50 rounded-2xl p-2 border border-slate-200/10"
+                                  />
+                                ))}
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -937,8 +1161,22 @@ export default function Home() {
                   <div className="glass-panel p-8 rounded-2xl relative border-t-4 border-t-sky-400 dark:border-t-sky-600">
                     <h4 className="font-bold text-lg mb-2 text-sky-500">Pregunta al AI Studio:</h4>
                     <p className="text-slate-700 dark:text-slate-300 italic text-lg mb-6 border-l-4 border-sky-300 dark:border-sky-700 pl-4 py-2">
-                       "Pendiente..."
+                      &quot;Además de función lineal, cuadrática, exponencial y logarítmica, ¿qué otros tipos de funciones importantes existen?&quot;
                     </p>
+                    <div className="w-full">
+                      <Carousel
+                        title="DiálogoX: Tipos de Funciones"
+                        slides={[1, 2, 3].map(num => (
+                          <img
+                            key={`s12-q1-${num}`}
+                            src={`/img/s12-q1-${num}.jpg`}
+                            alt={`Captura Q1-${num}`}
+                            className="w-full h-full object-contain bg-slate-900/50 rounded-2xl p-2 border border-slate-200/10"
+                            onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement!.innerHTML = `<div class="p-8 text-center text-slate-400 flex flex-col items-center"><svg class="w-8 h-8 mb-2 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg><p class="text-xs font-bold uppercase tracking-widest">s12-q1-${num}.jpg</p></div>`; }}
+                          />
+                        ))}
+                      />
+                    </div>
                   </div>
                 </section>
                 <section className="glass-panel p-8 sm:p-10 relative overflow-hidden">
